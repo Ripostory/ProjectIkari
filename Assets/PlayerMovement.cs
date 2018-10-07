@@ -21,7 +21,10 @@ public class PlayerMovement : MonoBehaviour
     //handle collision
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        Instantiate(impactEffect, collision.contacts[0].point, new Quaternion());
+        if (collision.gameObject.tag == "Wall")
+        {
+            Instantiate(impactEffect, collision.contacts[0].point, new Quaternion());
+        }
     }
 
     // Update is called once per frame
