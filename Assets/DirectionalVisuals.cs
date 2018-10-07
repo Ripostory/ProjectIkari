@@ -19,11 +19,11 @@ public class DirectionalVisuals : MonoBehaviour {
         //flip on movement direction
         if (body.angularVelocity < 0)
         {
-            //sprite.flipY = false;
+            sprite.flipY = false;
         }
         else
         {
-            //sprite.flipY = true;
+            sprite.flipY = true;
         }
 
         //choose sprite based on angular direction
@@ -42,9 +42,9 @@ public class DirectionalVisuals : MonoBehaviour {
             sprite.sprite = upSprite;
         }
 
-        //if (Input.GetKey(dive))
-        //{
-        //    sprite.sprite = diveSprite;
-        //}
+        if (Input.GetKey(dive))
+        {
+            sprite.sprite = diveSprite;
+        }
     }
 }

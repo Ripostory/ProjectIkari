@@ -10,11 +10,18 @@ public class PlayerMovement : MonoBehaviour
     public float power;
     public float horizontalPower;
     public float diveRotation;
+    public GameObject impactEffect;
 
     // Use this for initialization
     void Start()
     {
 
+    }
+
+    //handle collision
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        Instantiate(impactEffect, collision.contacts[0].point, new Quaternion());
     }
 
     // Update is called once per frame

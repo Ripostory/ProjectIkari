@@ -624,6 +624,8 @@ MonoBehaviour:
   power: 800
   horizontalPower: 1000
   diveRotation: 40
+  impactEffect: {fileID: 1588564813502190, guid: 6bfe3bc1b0e843844bf0d665503226ea,
+    type: 2}
 --- !u!114 &2115493174
 MonoBehaviour:
   m_ObjectHideFlags: 0
