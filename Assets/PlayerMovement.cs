@@ -7,15 +7,28 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode left;
     public KeyCode right;
     public KeyCode dive;
+    public KeyCode fire;
     public float power;
     public float horizontalPower;
     public float diveRotation;
+    public float fireSpeed;
     public GameObject impactEffect;
+    public GameObject projectile;
+
+    private bool allowFire = true;
 
     // Use this for initialization
     void Start()
     {
 
+    }
+
+    private IEnumerator Fire()
+    {
+        allowFire = false;
+        Instantiate(projectile, transform.position, transform.rotation);
+        yield return new WaitForSeconds(fireSpeed);
+        allowFire = true;
     }
 
     //handle collision
@@ -69,6 +82,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(left))
         {
             body.AddForce(new Vector2(-horizontalPower * Time.deltaTime, 0));
+        }
+
+        //firing
+        if (Input.GetKey(fire) && allowFire)
+        {
+            StartCoroutine(Fire());
         }
     }
 }

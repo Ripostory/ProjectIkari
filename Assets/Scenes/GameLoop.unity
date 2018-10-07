@@ -1001,11 +1001,14 @@ MonoBehaviour:
   left: 97
   right: 100
   dive: 115
+  fire: 32
   power: 800
   horizontalPower: 1000
   diveRotation: 40
+  fireSpeed: 0.05
   impactEffect: {fileID: 1588564813502190, guid: 6bfe3bc1b0e843844bf0d665503226ea,
     type: 2}
+  projectile: {fileID: 1047705257636940, guid: 859ff39a16559c548a45302bd22743ea, type: 2}
 --- !u!114 &2115493174
 MonoBehaviour:
   m_ObjectHideFlags: 0
