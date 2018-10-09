@@ -17,7 +17,8 @@ public class Projectile : MonoBehaviour {
         //TODO check if hits a player
         if (collision.gameObject.tag == "Player")
         {
-
+            //kill object
+            Destroy(gameObject);
         }
         else if (collision.gameObject.tag == "Bullet")
         {
@@ -32,7 +33,5 @@ public class Projectile : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        //move in direction set
-        //gameObject.GetComponent<Rigidbody2D>().velocity = gameObject.transform.forward * projectileSpeed;
     }
 }

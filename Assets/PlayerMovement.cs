@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public float fireSpeed;
     public GameObject impactEffect;
     public GameObject projectile;
+    public GameObject healthBar;
 
     private bool allowFire = true;
 
@@ -34,9 +35,26 @@ public class PlayerMovement : MonoBehaviour
     //handle collision
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        //get healthbar in case event is a damaging collision
+        PlayerHP hpScript = healthBar.GetComponent<PlayerHP>();
+
         if (collision.gameObject.tag == "Wall")
         {
             Instantiate(impactEffect, collision.contacts[0].point, new Quaternion());
+            hpScript.Damage(1);
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        //get healthbar in case event is a damaging collision
+        PlayerHP hpScript = healthBar.GetComponent<PlayerHP>();
+
+        if (collision.gameObject.tag == "Bullet")
+        {
+            //handle bullet collision
+            Projectile projectile = collision.gameObject.GetComponent<Projectile>();
+            hpScript.Damage(projectile.damage);
         }
     }
 
