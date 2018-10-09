@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject healthBar;
 
     private bool allowFire = true;
+    private bool isDead = false;
 
     // Use this for initialization
     void Start()
@@ -60,54 +61,62 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void KillPlayer()
+    {
+        isDead = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        Rigidbody2D body = GetComponent<Rigidbody2D>();
-        float rotationState = 0.0f;
-        float direction = 0.0f;
+        if (!isDead)
+        {
+            Rigidbody2D body = GetComponent<Rigidbody2D>();
+            float rotationState = 0.0f;
+            float direction = 0.0f;
 
-        //handle saving rotational state
-        if (Input.GetKeyDown(dive))
-        {
-            rotationState = body.rotation;
-        }
+            //handle saving rotational state
+            if (Input.GetKeyDown(dive))
+            {
+                rotationState = body.rotation;
+            }
 
-        //get direction
-        if (body.velocity.x > 0)
-        {
-            direction = -1.0f;
-        }
-        else
-        {
-            direction = 1.0f;
-        }
+            //get direction
+            if (body.velocity.x > 0)
+            {
+                direction = -1.0f;
+            }
+            else
+            {
+                direction = 1.0f;
+            }
 
-        //dive
-        if (!Input.GetKey(dive))
-        {
-            body.AddForce(new Vector2(0, power * Time.deltaTime));
-        }
-        else
-        {
-            body.angularVelocity = body.velocity.magnitude * diveRotation * direction;
-        }
+            //dive
+            if (!Input.GetKey(dive))
+            {
+                body.AddForce(new Vector2(0, power * Time.deltaTime));
+            }
+            else
+            {
+                body.angularVelocity = body.velocity.magnitude * diveRotation * direction;
+            }
 
-        //left right controls
-        if (Input.GetKey(right))
-        {
-            body.AddForce(new Vector2(horizontalPower * Time.deltaTime, 0));
-        }
+            //left right controls
+            if (Input.GetKey(right))
+            {
+                body.AddForce(new Vector2(horizontalPower * Time.deltaTime, 0));
+            }
 
-        if (Input.GetKey(left))
-        {
-            body.AddForce(new Vector2(-horizontalPower * Time.deltaTime, 0));
-        }
+            if (Input.GetKey(left))
+            {
+                body.AddForce(new Vector2(-horizontalPower * Time.deltaTime, 0));
+            }
 
-        //firing
-        if (Input.GetKey(fire) && allowFire)
-        {
-            StartCoroutine(Fire());
+            //firing
+            if (Input.GetKey(fire) && allowFire)
+            {
+                StartCoroutine(Fire());
+            }
         }
     }
 }
