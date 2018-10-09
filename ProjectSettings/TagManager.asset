@@ -17,10 +17,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Walls
+  - Obstacles
+  - Player1 (P2 bullet)
+  - Player2 (P1 bullet)
   - 
   - 
   - 
