@@ -7,7 +7,13 @@ public class delayedDestroy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Destroy(gameObject, this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length + additionalDelay);
+        if (GetComponent<Animator>() != null)
+        {
+            Destroy(gameObject, this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length + additionalDelay);
+        } else
+        {
+            Destroy(gameObject, additionalDelay);
+        }
     }
 	
 	// Update is called once per frame
