@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float horizontalPower;
     public float diveRotation;
     public float fireSpeed;
+    public int ProjectileLayer;
     public GameObject impactEffect;
     public GameObject projectile;
     public GameObject healthBar;
@@ -27,7 +28,8 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator Fire()
     {
         allowFire = false;
-        Instantiate(projectile, transform.position, transform.rotation);
+        GameObject childProjectile = Instantiate(projectile, transform.position, transform.rotation);
+        childProjectile.layer = ProjectileLayer;
         yield return new WaitForSeconds(fireSpeed);
         allowFire = true;
     }
