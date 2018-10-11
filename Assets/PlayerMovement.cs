@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
         //get healthbar in case event is a damaging collision
         PlayerHP hpScript = healthBar.GetComponent<PlayerHP>();
 
-        if (collision.gameObject.tag == "Wall")
+        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Player")
         {
             Instantiate(impactEffect, collision.contacts[0].point, new Quaternion());
             hpScript.Damage(1);
