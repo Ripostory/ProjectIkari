@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject impactEffect;
     public GameObject projectile;
     public GameObject healthBar;
+    public UnityEvent onHit;
 
     private bool allowFire = true;
     private bool isDead = false;
@@ -45,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Instantiate(impactEffect, collision.contacts[0].point, new Quaternion());
             hpScript.Damage(1);
+            onHit.Invoke();
         }
     }
 
@@ -57,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //handle bullet collision
             Projectile projectile = collision.gameObject.GetComponent<Projectile>();
+            Instantiate(impactEffect, gameObject.transform);
             hpScript.Damage(projectile.damage);
         }
     }
